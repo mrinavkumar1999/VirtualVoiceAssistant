@@ -276,7 +276,7 @@ def pearl(command):
         talk(f'Time is {hour}:{minute}')
 
     elif 'who are you' in command:
-        talk('I am Pearl developed by Mrinav & Hemant for there college project')
+        talk('I am Pearl developed by Mrinav Kumar for his college project')
         time.sleep(3)
 
     elif 'thank you' in command:
