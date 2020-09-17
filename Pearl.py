@@ -99,7 +99,7 @@ def pearl(command):
             subgoogle = reg_ex.group(1)
             url = url + 'r/' + subgoogle
         talk('Okay!')
-        driver = webdriver.Firefox(executable_path='/home/coderasha/Desktop/geckodriver')
+        driver = webdriver.Firefox(executable_path='Yor Path here')
         driver.get('http://www.google.com')
         search = driver.find_element_by_name('q')
         search.send_keys(str(search_for))
@@ -124,10 +124,10 @@ def pearl(command):
         mail.starttls()
 
         #login
-        mail.login('kmrinav@gmail.com', 'mrinav1999')
+        mail.login('senders email', 'senders pass')
 
         #send message
-        mail.sendmail('kmrinav@gmail.com', 'mrinavkumar1999@gmail.com', content)
+        mail.sendmail('from', 'to', content)
 
         #end mail connection
         mail.close()
@@ -173,7 +173,7 @@ def pearl(command):
 
     #play music
     elif 'play music' in command:
-        music_dir= '/home/mrinav/Songs'
+        music_dir= 'Your Path here'
         songs=os.listdir(music_dir)   
         mixer.init()
         mixer.music.load(os.path.join(music_dir, songs[0]))
@@ -202,7 +202,7 @@ def pearl(command):
     #top headlines 
     elif 'news of today' in command:
         talk('Todays top Headlines are :' )
-        newsapi = NewsApiClient(api_key='1274bd0605ba40849242e91e7df46252')
+        newsapi = NewsApiClient(api_key='Your Key Here')
         top_headlines = newsapi.get_top_headlines(q='Covid-19',language='en',)
         for article in top_headlines['articles']:
             print('Title : ')
@@ -228,7 +228,7 @@ def pearl(command):
         reg_ex = re.search('current weather in (.*)', command)
         if reg_ex:
             city = reg_ex.group(1)
-            owm = OWM(api_key='61453a21833b246fdcd6460f81e155e3')
+            owm = OWM(api_key='Yoyr Key here')
             obs = owm.weather_at_place(city)
             w = obs.get_weather()
             k = w.get_status()
@@ -236,7 +236,7 @@ def pearl(command):
             talk('Current weather in %s is %s. The maximum temperature is %0.2f and the minimum temperature is %0.2f degree celcius' % (city, k, x['temp_max'], x['temp_min']))
 
     elif 'change wallpaper' in command:
-        folder = '/home/mrinav/Downloads/'
+        folder = 'Your Path here'
         for the_file in os.listdir(folder):
             file_path = os.path.join(folder, the_file)
             try:
@@ -244,14 +244,14 @@ def pearl(command):
                     os.unlink(file_path)
             except Exception as e:
                 print(e)
-        api_key = 'LCAfJ8kXGYi49wcUy2xTIcMkWfYx_9njQAZ7wAMOrL4'
+        api_key = 'Your Key Here'
         url = 'https://api.unsplash.com/photos/random?client_id=' + api_key #pic from unspalsh.com
         f = urllib.request.urlopen(url)
         json_string = f.read()
         f.close()
         parsed_json = json.loads(json_string)
         photo = parsed_json['urls']['full']
-        urllib.request.urlretrieve(photo, "/home/mrinav/Downloads/a") # Location where we download the image to.
+        urllib.request.urlretrieve(photo, "Your Path here") # Location where we download the image to.
         subprocess.call(["killall Dock"], shell=True)
         talk('wallpaper changed successfully')
 
@@ -276,14 +276,14 @@ def pearl(command):
         talk(f'Time is {hour}:{minute}')
 
     elif 'who are you' in command:
-        talk('I am Pearl developed by Mrinav Kumar for his college project')
+        talk('I am Pearl - A Virtual Voice Assistant')
         time.sleep(3)
 
     elif 'thank you' in command:
         talk('My Pleasure')
 
     elif 'shutdown' in command:
-        talk('Bye bye Sir. Have a nice day')
+        talk('Bye bye ! Have a nice day')
         sys.exit()
             
     else:
